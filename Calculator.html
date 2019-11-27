@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Calculator</title>
+    
+    <Style>
+    *{
+        margin:0px;
+        padding:0px;
+    }
+    
+    h1{
+        margin:20px 20px 10px 20px;
+        padding:10px;
+        text-align: center;
+        font-size: 40px;
+        text-decoration: underline;
+    }
+
+    .calc{
+        margin:40px auto;
+        text-align: center;
+        background-color:orangered;
+        padding:14px 7px 14px 7px;
+        width:300px;
+        border: 2px solid darkred;
+    }
+    
+    .calcscreen{
+        text-align:right;
+        width:268px;
+        padding:8px;
+        font-size:22px;
+        margin:5px auto;
+        margin-bottom: 15px;
+        background-color:white;
+        border: solid darkred;
+    }
+
+    .mybutton{
+        text-align: center;
+        margin:5px;
+        height: 50px;
+        width: 62.5px;
+        font-size: 18px;
+        color:white;
+        background-color: black;
+        border: solid white;
+    }
+	#plus
+	{
+		height: 110px;
+	}
+    </Style>
+</head>
+<body>
+<h1>A Simple Calculator</h1>
+<form class="calc" name="calc">
+    <input type="text" class="calcscreen" name="answer">
+    <table>
+    <tr>
+        <td>
+        <input type="button" class="mybutton" value="AC" onClick="calc.answer.value = ''">
+        </td>
+        <td>
+        <input type="button" class="mybutton" value="DEL" onClick="calc.answer.value = delAns()">
+        </td>
+        <td>
+        <input type="button" class="mybutton" value="+/-" onClick="calc.answer.value = changeSign()">
+        </td>
+        <td>
+        <input type="button" class="mybutton" value="/" onClick="calc.answer.value = div()">
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+        <input type="button" class="mybutton" value="7" onClick="calc.answer.value += '7'">
+        </td>
+        <td>
+        <input type="button" class="mybutton" value="8" onClick="calc.answer.value += '8'">
+        </td>
+        <td>
+        <input type="button" class="mybutton" value="9" onClick="calc.answer.value += '9'">
+        </td>
+        <td>
+        <input type="button" class="mybutton" value="X" onClick="calc.answer.value = mul()">
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+        <input type="button" class="mybutton" value="4" onClick="calc.answer.value += '4'">
+        </td>
+        <td>
+        <input type="button" class="mybutton" value="5" onClick="calc.answer.value += '5'">
+        </td>
+        <td>
+        <input type="button" class="mybutton" value="6" onClick="calc.answer.value += '6'">
+        </td>
+        <td>
+        <input type="button" class="mybutton" value="-" onClick="calc.answer.value = sub()">
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+        <input type="button" class="mybutton" value="1" onClick="calc.answer.value += '1'">
+        </td>
+        <td>
+        <input type="button" class="mybutton" value="2" onClick="calc.answer.value += '2'">
+        </td>
+        <td>
+        <input type="button" class="mybutton" value="3" onClick="calc.answer.value += '3'">
+        </td>
+        <td rowspan="2">
+        <input type="button" class="mybutton" value="+" id="plus" onClick="calc.answer.value =add()">
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+        <input type="button" class="mybutton" value="." onClick="calc.answer.value = addDot()">
+        </td>
+        <td>
+        <input type="button" class="mybutton" value="0" onClick="calc.answer.value += '0'">
+        </td>
+        <td>
+        <input type="button" class="mybutton" value="=" onClick="calc.answer.value = eval(calc.answer.value)">
+        </td>
+    </tr>
+    </table>
+</form>
+
+<script type="text/javascript">
+function delAns()
+{
+	var x=calc.answer.value;
+	return x.slice(0,x.length-1);
+}
+function changeSign()
+{
+	var x=calc.answer.value;
+	if(x[0]=="-")
+	{
+		return (x.slice(1,x.length));
+	}
+	else
+	{
+		return ("-"+x);
+	}
+}
+function addDot()
+{
+	var x=calc.answer.value;
+	if(x[x.length-1]==".")
+	{
+		return x;
+	}
+	else
+	{
+		return x+".";
+	}
+}
+function add()
+{
+	var x=calc.answer.value;
+	if(x.length==0)
+	{
+		return "";
+	}
+	else if(x[x.length-1]=="+")
+	{
+		return x;
+	}
+	else
+	{
+		return x+"+";
+	}
+}
+function mul()
+{
+	var x=calc.answer.value;
+	if(x.length==0)
+	{
+		return "";
+	}
+	else if(x[x.length-1]=="*")
+	{
+		return x;
+	}
+	else
+	{
+		return x+"*";
+	}
+}
+function sub()
+{
+	var x=calc.answer.value;
+	if(x.length==0)
+	{
+		return "";
+	}
+	else if(x[x.length-1]=="-")
+	{
+		return x;
+	}
+	else
+	{
+		return x+"-";
+	}
+}
+function div()
+{
+	var x=calc.answer.value;
+	if(x.length==0)
+	{
+		return "";
+	}
+	else if(x[x.length-1]=="/")
+	{
+		return x;
+	}
+	else
+	{
+		return x+"/";
+	}
+}
+</script>
+</body>
+</html>
