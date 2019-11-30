@@ -129,7 +129,7 @@
         <input type="button" class="mybutton" value="0" onClick="calc.answer.value += '0'">
         </td>
         <td>
-        <input type="button" class="mybutton" value="=" onClick="calc.answer.value = eval(calc.answer.value)">
+        <input type="button" class="mybutton" value="=" onClick="calc.answer.value = equals()">
         </td>
     </tr>
     </table>
@@ -155,26 +155,17 @@ function changeSign()
 }
 function addDot()
 {
+	correct();
 	var x=calc.answer.value;
-	if(x[x.length-1]==".")
-	{
-		return x;
-	}
-	else
-	{
-		return x+".";
-	}
+	return x+".";
 }
 function add()
 {
+	correct();
 	var x=calc.answer.value;
 	if(x.length==0)
 	{
 		return "";
-	}
-	else if(x[x.length-1]=="+")
-	{
-		return x;
 	}
 	else
 	{
@@ -183,14 +174,11 @@ function add()
 }
 function mul()
 {
+	correct();
 	var x=calc.answer.value;
 	if(x.length==0)
 	{
 		return "";
-	}
-	else if(x[x.length-1]=="*")
-	{
-		return x;
 	}
 	else
 	{
@@ -199,34 +187,40 @@ function mul()
 }
 function sub()
 {
+	correct();
 	var x=calc.answer.value;
-	if(x.length==0)
-	{
-		return "";
-	}
-	else if(x[x.length-1]=="-")
-	{
-		return x;
-	}
-	else
-	{
-		return x+"-";
-	}
+	return x+"-";
 }
 function div()
 {
+	correct();
 	var x=calc.answer.value;
 	if(x.length==0)
 	{
 		return "";
-	}
-	else if(x[x.length-1]=="/")
-	{
-		return x;
 	}
 	else
 	{
 		return x+"/";
+	}
+}
+function equals()
+{
+	correct();
+	return eval(calc.answer.value);
+}
+function correct()
+{
+	var x=calc.answer.value;
+	switch(x[x.length-1])
+	{
+		case "+":
+		case "-":
+		case "*":
+		case "/":
+		case ".":
+		calc.answer.value= x.slice(0,x.length-1);
+		break;
 	}
 }
 </script>
